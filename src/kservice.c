@@ -711,7 +711,7 @@ RTM_EXPORT(rt_strdup);
  */
 void rt_show_version(void)
 {
-    rt_kprintf("\n RT-THREAD     %d.%d.%d build %s %s\n",
+    rt_kprintf("\nRTT %d.%d.%d @ %s %s\n",
                (rt_int32_t)RT_VERSION_MAJOR, (rt_int32_t)RT_VERSION_MINOR, (rt_int32_t)RT_VERSION_PATCH, __DATE__, __TIME__);
 }
 RTM_EXPORT(rt_show_version);

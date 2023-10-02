@@ -7,7 +7,7 @@ static void tl_tick_timer_callback (void *args)
 	struct device_info_t *pDEV = (struct device_info_t *)args;
 
 	if (pDEV->app_runtime % 60 == 0) {
-		rt_kprintf("R : %3dD+%02dh:%02dm\n", pDEV->app_runtime/86400,
+		rt_kprintf("R : %03dD %02dh:%02dm\n", pDEV->app_runtime/86400,
 			pDEV->app_runtime%86400/3600, pDEV->app_runtime%86400%3600/60);
 	}
 

@@ -83,7 +83,7 @@ rt_err_t tl_tty_north_thread (struct tl_tty_t *pTTY)
 	tid_tty = rt_thread_create("thr_north", 
 							tl_tty_north_recv_entry, 
 							pTTY, 
-							4096,
+							1024,
 							RT_MAIN_THREAD_PRIORITY+2,
 							20);
 

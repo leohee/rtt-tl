@@ -16,6 +16,10 @@ struct device_info_t gDEV = {
 
 int main(void)
 {
+#if defined(RT_USING_FINSH) && defined(FINSH_USING_MSH)
+	finsh_set_prompt("tl ");
+#endif
+
     /* set LED0 pin mode to output */
     rt_pin_mode(LED0_PIN, PIN_MODE_OUTPUT);
 

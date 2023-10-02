@@ -48,7 +48,7 @@ static long clear(void)
 
     return 0;
 }
-MSH_CMD_EXPORT(clear, clear the terminal screen);
+MSH_CMD_EXPORT(clear, Clear screen.);
 
 extern void rt_show_version(void);
 long version(void)
@@ -57,7 +57,7 @@ long version(void)
 
     return 0;
 }
-MSH_CMD_EXPORT(version, show RT-Thread version information);
+MSH_CMD_EXPORT(version, Built version.);
 
 rt_inline void object_split(int len)
 {
