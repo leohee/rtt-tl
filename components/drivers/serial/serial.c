@@ -377,8 +377,7 @@ static void _serial_check_buffer_size(void)
     if (already_output == RT_FALSE)
     {
 #if !defined(RT_USING_ULOG) || defined(ULOG_USING_ISR_LOG)
-        LOG_W("Warning: There is no enough buffer for saving data,"
-              " please increase the RT_SERIAL_RB_BUFSZ option.");
+        LOG_W("Must increase the RT_SERIAL_RB_BUFSZ.");
 #endif
         already_output = RT_TRUE;
     }

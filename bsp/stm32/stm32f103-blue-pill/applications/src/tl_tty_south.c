@@ -30,7 +30,7 @@ static void tl_tty_south_recv_entry (void *data)
 {
 	struct tl_tty_t *pTTY = (struct tl_tty_t *)data;
 
-	rt_err_t ret = RT_EOK;
+//	rt_err_t ret = RT_EOK;
 	rt_int32_t rx_len = 0;
 	rt_uint8_t rx_raw[RT_SERIAL_RB_BUFSZ+1];
 	//LPUHF_QUEUE_t pQue = uhf_queue_init();
@@ -39,14 +39,14 @@ static void tl_tty_south_recv_entry (void *data)
 		rt_memset(&pTTY->msg, 0, sizeof(struct rx_msg));
 
 		ret = rt_mq_recv(&pTTY->rx_mq, &pTTY->msg, sizeof(struct rx_msg), RT_WAITING_FOREVER);
-		if (ret == RT_EOK) {
+		//if (ret == RT_EOK) {
 			rt_memset(rx_raw, 0, RT_SERIAL_RB_BUFSZ+1);
 			rx_len = rt_device_read(pTTY->msg.dev, 0, rx_raw, pTTY->msg.size);
 			if (rx_len > 0) {
-
+				rt_kprintf("%s", (char *)rx_raw);
 
 			}
-		}
+		//}
 	}
 
 //	LOG_W("W : exit thr_south");

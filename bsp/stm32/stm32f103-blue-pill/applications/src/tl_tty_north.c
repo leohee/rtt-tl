@@ -28,23 +28,21 @@ static void tl_tty_north_recv_entry (void *data)
 {
 	struct tl_tty_t *pTTY = (struct tl_tty_t *)data;
 
-	rt_err_t ret = RT_EOK;
+//	rt_err_t ret = RT_EOK;
 	rt_int32_t rx_len = 0;
 	rt_uint8_t rx_raw[RT_SERIAL_RB_BUFSZ+1];
 	//LPUHF_QUEUE_t pQue = uhf_queue_init();
 
 	while (1) {
 		rt_memset(&pTTY->msg, 0, sizeof(struct rx_msg));
-
 		ret = rt_mq_recv(&pTTY->rx_mq, &pTTY->msg, sizeof(struct rx_msg), RT_WAITING_FOREVER);
-		if (ret == RT_EOK) {
+		//if (ret == RT_EOK) {
 			rt_memset(rx_raw, 0, RT_SERIAL_RB_BUFSZ+1);
 			rx_len = rt_device_read(pTTY->msg.dev, 0, rx_raw, pTTY->msg.size);
 			if (rx_len > 0) {
-
-
+				rt_kprintf("%s", (char *)rx_raw);
 			}
-		}
+		//}
 	}
 
 //	LOG_W("W : exit thr_north");
@@ -84,7 +82,7 @@ rt_err_t tl_tty_north_thread (struct tl_tty_t *pTTY)
 							tl_tty_north_recv_entry, 
 							pTTY, 
 							1024,
-							RT_MAIN_THREAD_PRIORITY+2,
+							RT_MAIN_THREAD_PRIORITY+1,
 							20);
 
 	if (tid_tty != RT_NULL) {

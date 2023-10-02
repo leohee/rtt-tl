@@ -6,6 +6,9 @@ void tl_uptime (void)
 	rt_kprintf("%d s : %03dD %02d:%02d:%02d\n", gDEV.app_runtime, 
 		gDEV.app_runtime/86400, gDEV.app_runtime%86400/3600, 
 		gDEV.app_runtime%86400%3600/60, gDEV.app_runtime%86400%3600%60);
+
+	rt_device_write(tty_north.dev, 0, "north ", 6);
+	rt_device_write(tty_south.dev, 0, "south ", 6);
 }
 
 static void tl_tick_timer_callback (void *args)
