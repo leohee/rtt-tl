@@ -16,6 +16,7 @@ struct device_info_t {
 
 extern struct device_info_t gDEV;
 
+extern void tl_version (void);
 
 #endif // _TL_MAIN_H_
 

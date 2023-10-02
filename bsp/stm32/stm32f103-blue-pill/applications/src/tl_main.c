@@ -9,7 +9,11 @@ struct device_info_t gDEV = {
     .app_runtime = 0,
 };
 
-
+void tl_version (void)
+{
+	rt_kprintf("%s %s @ %s\n", gDEV.app_name, 
+		gDEV.ver_app, gDEV.app_buildtime);
+}
 
 /* defined the LED0 pin: PC13 */
 #define LED0_PIN    GET_PIN(C, 13)

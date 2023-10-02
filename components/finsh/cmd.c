@@ -50,14 +50,26 @@ static long clear(void)
 }
 MSH_CMD_EXPORT(clear, Clear screen.);
 
+extern void tl_version(void);
 extern void rt_show_version(void);
 long version(void)
 {
     rt_show_version();
+	tl_version();
 
     return 0;
 }
 MSH_CMD_EXPORT(version, Built version.);
+
+void tl_uptime (void);
+long uptime(void)
+{
+    tl_uptime();
+
+    return 0;
+}
+MSH_CMD_EXPORT(uptime, Show runtime.);
+
 
 rt_inline void object_split(int len)
 {

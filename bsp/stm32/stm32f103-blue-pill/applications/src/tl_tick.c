@@ -1,13 +1,19 @@
 
 #include "inc_files.h"
 
+void tl_uptime (void)
+{
+	rt_kprintf("%d s : %03dD %02d:%02d:%02d\n", gDEV.app_runtime, 
+		gDEV.app_runtime/86400, gDEV.app_runtime%86400/3600, 
+		gDEV.app_runtime%86400%3600/60, gDEV.app_runtime%86400%3600%60);
+}
 
 static void tl_tick_timer_callback (void *args)
 {
 	struct device_info_t *pDEV = (struct device_info_t *)args;
 
 	if (pDEV->app_runtime % 60 == 0) {
-		rt_kprintf("R : %03dD %02dh:%02dm\n", pDEV->app_runtime/86400,
+		rt_kprintf("R : %03dD %02d:%02d\n", pDEV->app_runtime/86400,
 			pDEV->app_runtime%86400/3600, pDEV->app_runtime%86400%3600/60);
 	}
 
