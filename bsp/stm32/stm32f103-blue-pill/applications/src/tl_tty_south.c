@@ -38,7 +38,7 @@ static void tl_tty_south_recv_entry (void *data)
 	while (1) {
 		rt_memset(&pTTY->msg, 0, sizeof(struct rx_msg));
 
-		ret = rt_mq_recv(&pTTY->rx_mq, &pTTY->msg, sizeof(struct rx_msg), RT_WAITING_FOREVER);
+		rt_mq_recv(&pTTY->rx_mq, &pTTY->msg, sizeof(struct rx_msg), RT_WAITING_FOREVER);
 		//if (ret == RT_EOK) {
 			rt_memset(rx_raw, 0, RT_SERIAL_RB_BUFSZ+1);
 			rx_len = rt_device_read(pTTY->msg.dev, 0, rx_raw, pTTY->msg.size);

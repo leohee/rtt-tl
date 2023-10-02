@@ -5,7 +5,6 @@
 #include <ctype.h>
 #include <errno.h>
 
-//#include <pthread.h>
 #include <signal.h>
 #include <stdarg.h>
 #include <stdbool.h>
@@ -26,6 +25,7 @@
 
 #include "shell.h"
 
+#include "tl_gpio.h"
 #include "tl_tick.h"
 #include "tl_tty.h"
 

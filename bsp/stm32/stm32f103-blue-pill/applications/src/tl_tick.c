@@ -22,6 +22,14 @@ static void tl_tick_timer_callback (void *args)
 
 	pDEV->app_runtime++;
 
+
+	if (pDEV->app_runtime%5 == 1) {
+		tl_set_led(0);
+	} else if (pDEV->app_runtime%5 == 2) {
+		tl_set_led(1);
+	}
+
+
 	// do other things
 }
 

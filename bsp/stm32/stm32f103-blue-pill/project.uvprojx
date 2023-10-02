@@ -708,11 +708,6 @@
           <GroupName>tl_app</GroupName>
           <Files>
             <File>
-              <FileName>tl_tty_south.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>applications\src\tl_tty_south.c</FilePath>
-            </File>
-            <File>
               <FileName>tl_tty_north.c</FileName>
               <FileType>1</FileType>
               <FilePath>applications\src\tl_tty_north.c</FilePath>
@@ -726,6 +721,16 @@
               <FileName>tl_main.c</FileName>
               <FileType>1</FileType>
               <FilePath>applications\src\tl_main.c</FilePath>
+            </File>
+            <File>
+              <FileName>tl_tty_south.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>applications\src\tl_tty_south.c</FilePath>
+            </File>
+            <File>
+              <FileName>tl_gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>applications\src\tl_gpio.c</FilePath>
             </File>
           </Files>
         </Group>
