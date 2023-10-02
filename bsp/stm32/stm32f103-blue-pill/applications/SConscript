@@ -1,18 +1,14 @@
+import rtconfig
 from building import *
-import os
+
+Import('SDK_LIB')
 
 cwd = GetCurrentDir()
-src = Glob('*.c')
-CPPPATH = [cwd]
 
-if GetDepend(['PKG_USING_RTDUINO']) and not GetDepend(['RTDUINO_NO_SETUP_LOOP']):
-    src += ['arduino_main.cpp']
+src = Glob('src/*.c')
 
-group = DefineGroup('Applications', src, depend = [''], CPPPATH = CPPPATH)
+path = [cwd + '/include']
 
-list = os.listdir(cwd)
-for item in list:
-    if os.path.isfile(os.path.join(cwd, item, 'SConscript')):
-        group = group + SConscript(os.path.join(item, 'SConscript'))
+group = DefineGroup('tl_app', src, depend = [''], CPPPATH = path)
 
 Return('group')
