@@ -61,7 +61,7 @@ long version(void)
 }
 MSH_CMD_EXPORT(version, Built version.);
 
-void tl_uptime (void);
+extern void tl_uptime (void);
 long uptime(void)
 {
     tl_uptime();

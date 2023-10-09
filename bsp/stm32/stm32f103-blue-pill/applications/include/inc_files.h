@@ -25,10 +25,11 @@
 
 #include "shell.h"
 
+#include "queue.h"
 #include "tl_gpio.h"
 #include "tl_tick.h"
 #include "tl_tty.h"
-
+#include "tl_msg.h"
 #include "tl_main.h"
 
 

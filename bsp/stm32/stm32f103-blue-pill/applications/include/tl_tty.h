@@ -1,8 +1,14 @@
 #ifndef _TL_TTY_H_
 #define _TL_TTY_H_
 
-#define TTY_NORTH_NAME				"uart1"
-#define TTY_SOUTH_NAME				"uart3"
+#define DEV_NORTH_NAME				"uart1"
+#define DEV_SOUTH_NAME				"uart3"
+
+#define MQ_NORTH_NAME				"mq_north"
+#define MQ_SOUTH_NAME				"mq_south"
+
+#define THREAD_NORTH_NAME			"thr_north"
+#define THREAD_SOUTH_NAME			"thr_south"
 
 struct rx_msg {
 	rt_device_t		dev;
@@ -11,7 +17,9 @@ struct rx_msg {
 
 struct tl_tty_t {
 	rt_device_t				dev;
-	const char				*name;
+	const char				*name_dev;
+	const char				*name_mq;
+	const char				*name_thr;
 	rt_uint8_t				iftype;			///< 接口编号
 
 	rt_uint32_t				rx_len;
