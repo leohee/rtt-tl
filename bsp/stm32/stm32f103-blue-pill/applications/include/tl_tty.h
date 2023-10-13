@@ -10,6 +10,11 @@
 #define THREAD_NORTH_NAME			"thr_north"
 #define THREAD_SOUTH_NAME			"thr_south"
 
+enum {
+	TO_NORTH	= (0),		// 北向接口，对接PC
+	TO_SOUTH	= (1)		// 南向接口，对接激光器
+};
+
 struct rx_msg {
 	rt_device_t		dev;
 	rt_size_t		size;
@@ -20,7 +25,7 @@ struct tl_tty_t {
 	const char				*name_dev;
 	const char				*name_mq;
 	const char				*name_thr;
-	rt_uint8_t				iftype;			///< 接口编号
+	rt_uint8_t				iftype;			///< 接口类型
 
 	rt_uint32_t				rx_len;
 	rt_uint8_t				rx_buf[RT_SERIAL_RB_BUFSZ+1];
@@ -31,8 +36,9 @@ struct tl_tty_t {
 
 };
 
-extern struct tl_tty_t tty_north;
-extern struct tl_tty_t tty_south;
+extern rt_err_t tl_tty_north_write (rt_uint8_t *buf, rt_int32_t len);
+
+extern rt_err_t tl_tty_south_write (rt_uint8_t *buf, rt_int32_t len);
 
 #endif // _TL_TTY_H_
 

@@ -6,7 +6,7 @@ struct tl_tty_t tty_north = {
 	.name_dev = DEV_NORTH_NAME,
 	.name_mq = MQ_NORTH_NAME,
 	.name_thr = THREAD_NORTH_NAME,
-	.iftype = 0,
+	.iftype = TO_NORTH,
 };
 
 struct tl_tty_t tty_south = {
@@ -14,7 +14,7 @@ struct tl_tty_t tty_south = {
 	.name_dev = DEV_SOUTH_NAME,
 	.name_mq = MQ_SOUTH_NAME,
 	.name_thr = THREAD_SOUTH_NAME,
-	.iftype = 1,
+	.iftype = TO_SOUTH,
 };
 
 static rt_err_t tl_tty_north_input (rt_device_t dev, rt_size_t size)
@@ -51,6 +51,24 @@ static rt_err_t tl_tty_south_input (rt_device_t dev, rt_size_t size)
 	return ret;
 }
 
+rt_err_t tl_tty_north_write (rt_uint8_t *buf, rt_int32_t len)
+{
+	rt_err_t ret = RT_EOK;
+
+	ret = rt_device_write(tty_north.dev, 0, buf, len);
+
+	return ret;
+}
+
+rt_err_t tl_tty_south_write (rt_uint8_t *buf, rt_int32_t len)
+{
+	rt_err_t ret = RT_EOK;
+
+	ret = rt_device_write(tty_south.dev, 0, buf, len);
+
+	return ret;
+}
+
 static void tl_tty_recv_entry (void *data)
 {
 	struct tl_tty_t *pTTY = (struct tl_tty_t *)data;
@@ -67,7 +85,12 @@ static void tl_tty_recv_entry (void *data)
 		rt_memset(rx_raw, 0, RT_SERIAL_RB_BUFSZ+1);
 		rx_len = rt_device_read(pTTY->msg.dev, 0, rx_raw, pTTY->msg.size);
 		if (rx_len > 0) {
-			//rt_kprintf("[%d] : %s", pTTY->iftype, (char *)rx_raw);
+			rt_kprintf("[%d] : %s", pTTY->iftype, (char *)rx_raw);
+			if (TO_NORTH == pTTY->iftype) {
+				tl_tty_south_write(rx_raw, rx_len);
+			} else if (TO_SOUTH == pTTY->iftype) {
+				tl_tty_north_write(rx_raw, rx_len);
+			}
 			ret = tl_msg_pickup(pQue, pTTY, rx_raw, rx_len);
 			while (1 == ret) {
 				rt_kprintf("[%d] : %s", pTTY->iftype, (char *)pTTY->rx_buf);
