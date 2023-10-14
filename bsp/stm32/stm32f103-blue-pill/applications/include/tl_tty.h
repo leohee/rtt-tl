@@ -25,8 +25,9 @@ struct tl_tty_t {
 	const char				*name_dev;
 	const char				*name_mq;
 	const char				*name_thr;
-	rt_uint8_t				iftype;			///< 接口类型
+	rt_uint8_t				iftype;			///< interface index
 
+	rt_uint32_t				lastTime;		///< last recv clock time
 	rt_uint32_t				rx_len;
 	rt_uint8_t				rx_buf[RT_SERIAL_RB_BUFSZ+1];
 

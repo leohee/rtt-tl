@@ -26,6 +26,7 @@
 #include "shell.h"
 
 #include "queue.h"
+#include "utility.h"
 #include "tl_gpio.h"
 #include "tl_tick.h"
 #include "tl_tty.h"

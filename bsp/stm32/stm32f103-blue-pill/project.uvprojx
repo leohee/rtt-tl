@@ -708,19 +708,9 @@
           <GroupName>tl_app</GroupName>
           <Files>
             <File>
-              <FileName>tl_tty.c</FileName>
+              <FileName>utility.c</FileName>
               <FileType>1</FileType>
-              <FilePath>applications\src\tl_tty.c</FilePath>
-            </File>
-            <File>
-              <FileName>tl_msg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>applications\src\tl_msg.c</FilePath>
-            </File>
-            <File>
-              <FileName>tl_gpio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>applications\src\tl_gpio.c</FilePath>
+              <FilePath>applications\src\utility.c</FilePath>
             </File>
             <File>
               <FileName>tl_tick.c</FileName>
@@ -736,6 +726,21 @@
               <FileName>queue.c</FileName>
               <FileType>1</FileType>
               <FilePath>applications\src\queue.c</FilePath>
+            </File>
+            <File>
+              <FileName>tl_tty.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>applications\src\tl_tty.c</FilePath>
+            </File>
+            <File>
+              <FileName>tl_msg.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>applications\src\tl_msg.c</FilePath>
+            </File>
+            <File>
+              <FileName>tl_gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>applications\src\tl_gpio.c</FilePath>
             </File>
           </Files>
         </Group>

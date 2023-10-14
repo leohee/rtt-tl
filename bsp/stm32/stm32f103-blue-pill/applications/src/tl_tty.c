@@ -84,19 +84,30 @@ static void tl_tty_recv_entry (void *data)
 
 		rt_memset(rx_raw, 0, RT_SERIAL_RB_BUFSZ+1);
 		rx_len = rt_device_read(pTTY->msg.dev, 0, rx_raw, pTTY->msg.size);
+		if (gDEV.app_runtime - 2 > pTTY->lastTime) {
+			if (pQue->size > 0) {
+				queue_output(pQue, NULL, pQue->size);
+			}
+		}
+		pTTY->lastTime = gDEV.app_runtime;
+
 		if (rx_len > 0) {
-			rt_kprintf("[%d] : %s", pTTY->iftype, (char *)rx_raw);
+			//rt_kprintf("[%d] : %s", pTTY->iftype, (char *)rx_raw);
+			hex_printf(rx_raw, rx_len);
 			if (TO_NORTH == pTTY->iftype) {
 				tl_tty_south_write(rx_raw, rx_len);
 			} else if (TO_SOUTH == pTTY->iftype) {
 				tl_tty_north_write(rx_raw, rx_len);
 			}
+
+			rt_memset(pTTY->rx_buf, 0, RT_SERIAL_RB_BUFSZ+1);
 			ret = tl_msg_pickup(pQue, pTTY, rx_raw, rx_len);
 			while (1 == ret) {
-				rt_kprintf("[%d] : %s", pTTY->iftype, (char *)pTTY->rx_buf);
+				rt_kprintf("%d:\t%s\n", pTTY->rx_len, (char *)pTTY->rx_buf);
 
 				// TODO msg
 
+				rt_memset(pTTY->rx_buf, 0, RT_SERIAL_RB_BUFSZ+1);
 				ret = tl_msg_pickup(pQue, pTTY, NULL, 0);
 			}
 		}
