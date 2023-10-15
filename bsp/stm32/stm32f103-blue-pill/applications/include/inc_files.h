@@ -30,6 +30,8 @@
 #include "tl_gpio.h"
 #include "tl_tick.h"
 #include "tl_tty.h"
+#include "tl_cmd_north.h"
+#include "tl_cmd_south.h"
 #include "tl_msg.h"
 #include "tl_main.h"
 
